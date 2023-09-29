@@ -1,0 +1,36 @@
+{
+  "name": "tab-doppelganger",
+  "description": "A Chrome extension that lets you know if you have a tab already opened with the same URL",
+  "version": "1.0.0",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "24": "assets/icons/icon24.png",
+      "32": "assets/icons/icon32.png"
+    },
+    "default_popup": "../popup.html"
+  },
+  "background": {
+    "service_worker": "background.ts"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-scripts/content.tsx"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["<all_urls>"],
+      "resources": ["assets/*"]
+    }
+  ],
+  "permissions": ["tabs", "storage"],
+  "manifest_version": 3
+}
